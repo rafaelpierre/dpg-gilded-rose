@@ -164,19 +164,3 @@ def test_item_repr(caplog):
     item = ItemFactory.create_item(name=ItemType.CONJURED, sell_in=10, quality=10)
 
     assert repr(item) == "ItemType.CONJURED, 10, 10"
-
-
-@pytest.mark.xfail(raises=ValueError)
-def test_quality_greater_than_50(caplog):
-
-    # Act
-
-    ItemFactory.create_item(name=ItemType.CONJURED, sell_in=10, quality=60)
-
-
-@pytest.mark.xfail(raises=ValueError)
-def test_quality_less_than_0(caplog):
-
-    # Act
-
-    ItemFactory.create_item(name=ItemType.CONJURED, sell_in=10, quality=-5)

@@ -111,24 +111,29 @@ class BackstagePass(StandardItem):
     def update_quality(self):
         """Updates quality for AgedBrie item."""
 
-        if self.quality < self._max_quality:
-            logger.debug(f"Quality: {self.quality}, Max: {self._max_quality}")
-            logger.debug(f"Sell In: {self.sell_in}")
-            if self.sell_in > 10:
-                self.quality += self._quality_daily_change
-            elif 5 < self.sell_in <= 10:
-                self.quality += 2 * self._quality_daily_change
-            elif 0 < self.sell_in <= 5:
-                self.quality += 3 * self._quality_daily_change
-            elif self.sell_in <= 0:
-                logger.debug(f"Reached due date (sell_in = {self.sell_in})")
-                self.quality = 0
+        quality_increase = 0
+        logger.debug(f"Quality: {self.quality}, Max: {self._max_quality}")
+        logger.debug(f"Sell In: {self.sell_in}")
+        if self.sell_in > 10:
+            quality_increase = self._quality_daily_change
+        elif 5 < self.sell_in <= 10:
+            quality_increase = 2 * self._quality_daily_change
+        elif 0 < self.sell_in <= 5:
+            quality_increase = 3 * self._quality_daily_change
+        elif self.sell_in <= 0:
+            logger.debug(f"Reached due date (sell_in = {self.sell_in})")
+            self.quality = 0
             logger.debug(f"Updated quality: {self.quality}")
+        
+        updated_quality = self.quality + quality_increase
+        if updated_quality < self._max_quality:
+            self.quality = updated_quality
         else:
             logger.debug(
                 f"Quality is equal to or greater than \
                 {self._max_quality}"
             )
+            self.quality = self._max_quality
 
 
 class Conjured(StandardItem):
