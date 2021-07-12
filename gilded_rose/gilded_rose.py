@@ -100,14 +100,8 @@ class AgedBrie(StandardItem):
         """Updates quality and sell_in for AgedBrie item."""
 
         logger.debug("Tick")
-        self.update_quality()
         self.update_sell_in()
-
-    def update_quality(self):
-        """Updates quality for AgedBrie item."""
-
-        logger.debug("Update quality")
-        super().update_quality()
+        self.update_quality()
 
 
 class BackstagePass(StandardItem):
