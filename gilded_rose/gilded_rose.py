@@ -100,8 +100,8 @@ class AgedBrie(StandardItem):
         """Updates quality and sell_in for AgedBrie item."""
 
         logger.debug("Tick")
-        self.update_sell_in()
         self.update_quality()
+        self.update_sell_in()
 
 
 class BackstagePass(StandardItem):

@@ -37,18 +37,21 @@ def test_sellin_passed_quality_degrades_twice_fast(caplog):
     assert item.quality == 8 and item.sell_in == -2
 
 
-def test_aged_brie_increase_quality_sellin_passed(caplog):
-    """'Aged Brie actually increases in Quality the older it gets.'"""
+def test_aged_brie_increase_twice_quality_sellin_passed(caplog):
+    """'Aged Brie actually increases in Quality the older it gets.'
+        Combined with: Items decrease (increase in this case) quality
+        twice as fast, once sell_in date has been reached.
+    """
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.AGED_BRIE, sell_in=10, quality=10)
+    item = ItemFactory.create_item(name=ItemType.AGED_BRIE, sell_in=0, quality=10)
     items = [item]
     gilded_rose = GildedRose(items)
     gilded_rose.update_quality()
 
     # Assert
     assert isinstance(items[0], AgedBrie)
-    assert item.quality == 11 and item.sell_in == 9
+    assert item.quality == 12 and item.sell_in == -1
 
 
 def test_quality_never_greater_fifty(caplog):
