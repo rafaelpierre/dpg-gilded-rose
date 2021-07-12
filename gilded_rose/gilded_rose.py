@@ -149,7 +149,17 @@ class Conjured(StandardItem):
 
 
 class Sulfuras(StandardItem):
-    """Definition for Sulfuras class."""
+    """Initializes Sulfuras object.
+
+        Args:
+            name: Item name.
+            sell_in: Days remaining until expiration date.
+            quality: Indicates product quality (kept for compatibility
+            purposes; always replaced by 80).
+
+        Returns:
+            An object of class Sulfuras.
+        """
 
     def __init__(self, name, sell_in, quality):
         super().__init__(name, sell_in, quality=80)
