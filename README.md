@@ -58,4 +58,4 @@ The exercise requires refactoring, but also the implementation of new functional
   * ```make test``` for testing
   * ```make coverage``` for generating test coverage report
   * ```make lint``` for linting with **flake8**
-  * ```black-fix``` for formatting with **black**
+  * ```make black-fix``` for formatting with **black**
