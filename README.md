@@ -54,7 +54,7 @@ The exercise requires refactoring, but also the implementation of new functional
 
 #### Environment Settings & Details
 
-* This project relies on (Poetry)[https://poetry.com] for dependency and environment management.
+* This project relies on [Poetry](https://poetry.com) for dependency and environment management.
 * Once Poetry is setup and dependencies are properly installed, one can run:
   * ```make test``` for testing
   * ```make coverage``` for generating test coverage report
