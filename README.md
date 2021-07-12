@@ -46,8 +46,9 @@ The exercise requires refactoring, but also the implementation of new functional
 ### Testing
 
 * Following TDD best practices, implementation was done in an iterative process. Failing tests were written followed by implementation of the required logic.
-* Additionally, results from *texttest_fixture.py* were generated for both **legacy** (**legacy** branch) and **updated** (**main** branch) versions, and compared. This was done to confirm that previous logic was preserved.
-  * It is noticed that the logic *Conjured* items was broken/not implemented in the legacy version (quality decreases by one, as opposed to requirements)
+* Additionally, results from *texttest_fixture.py* were generated for both **legacy** (**legacy** branch) and **updated** (**main** branch) versions, and compared (see *results.txt*). This was done to confirm that previous logic was preserved.
+  * It is noticed that the logic *Conjured* items was broken/not implemented in the legacy version (quality decreases by one, as opposed to requirements).
+  * Other than that, results are the same.
 * Minimum code coverage of 100% was set as a project parameter within Poetry
 
 
