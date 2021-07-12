@@ -1,0 +1,7 @@
+.idea/workspace.xml
+/ruby/tmp
+*/__pycache__
+.pytest_cache
+.vscode
+__pycache__
+*.pyc

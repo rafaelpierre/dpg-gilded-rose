@@ -1,0 +1,25 @@
+[tool.poetry]
+name = "gilded_rose"
+version = "0.1.0"
+description = ""
+authors = ["Rafael Pierre <rafael.pierre@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+loguru = "^0.5.3"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.4"
+flake8 = "^3.9.2"
+black = "^21.6b0"
+coverage = "^5.5"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+omit = [".*", "*/site-packages/*"]
+
+[tool.coverage.report]
+fail_under = 100
