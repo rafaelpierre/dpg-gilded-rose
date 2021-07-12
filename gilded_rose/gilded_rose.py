@@ -163,6 +163,8 @@ class Conjured(StandardItem):
 
 class Sulfuras(StandardItem):
     """Definition for Sulfuras class."""
+    def __init__(self, name, sell_in, quality):
+        super().__init__(name, sell_in, quality=80)
 
     def update_quality(self):
         pass
