@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Class containing test cases for GildedRose requirements
-described in README.md."""
-
-import pytest
-
+"""Class containing test cases for GildedRose requirements."""
 
 from gilded_rose.gilded_rose import GildedRose, StandardItem, AgedBrie
 from gilded_rose.item_factory import ItemFactory, ItemType
@@ -39,12 +35,16 @@ def test_sellin_passed_quality_degrades_twice_fast(caplog):
 
 def test_aged_brie_increase_twice_quality_sellin_passed(caplog):
     """'Aged Brie actually increases in Quality the older it gets.'
-        Combined with: Items decrease (increase in this case) quality
-        twice as fast, once sell_in date has been reached.
+    Combined with: Items decrease (increase in this case) quality
+    twice as fast, once sell_in date has been reached.
     """
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.AGED_BRIE, sell_in=0, quality=10)
+    item = ItemFactory.create_item(
+        name=ItemType.AGED_BRIE,
+        sell_in=0,
+        quality=10
+    )
     items = [item]
     gilded_rose = GildedRose(items)
     gilded_rose.update_quality()
@@ -98,7 +98,11 @@ def test_backstage_increase_quality_sellin_more_than_10(caplog):
     as it’s SellIn value approaches; (...)"""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.BACKSTAGE_PASS, sell_in=11, quality=30)
+    item = ItemFactory.create_item(
+        name=ItemType.BACKSTAGE_PASS,
+        sell_in=11,
+        quality=30
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
@@ -113,7 +117,11 @@ def test_backstage_increase_quality_sellin_between_5_and_10(caplog):
     as it’s SellIn value approaches; (...)"""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.BACKSTAGE_PASS, sell_in=6, quality=30)
+    item = ItemFactory.create_item(
+        name=ItemType.BACKSTAGE_PASS,
+        sell_in=6,
+        quality=30
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
@@ -127,7 +135,11 @@ def test_backstage_increase_quality_sellin_between_0_and_5(caplog):
     """Quality drops (...)by 3 when there are 5 days or less"""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.BACKSTAGE_PASS, sell_in=4, quality=30)
+    item = ItemFactory.create_item(
+        name=ItemType.BACKSTAGE_PASS,
+        sell_in=4,
+        quality=30
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
@@ -137,11 +149,15 @@ def test_backstage_increase_quality_sellin_between_0_and_5(caplog):
     assert items[0].quality == 33 and items[0].sell_in == 3
 
 
-def test_backstage_increase_quality_sellin_zero_or_less(caplog):
+def test_backstage_increase_quality_sellin_zero_less(caplog):
     """(...)Quality drops to 0 after the concert."""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.BACKSTAGE_PASS, sell_in=0, quality=30)
+    item = ItemFactory.create_item(
+        name=ItemType.BACKSTAGE_PASS,
+        sell_in=0,
+        quality=30
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
@@ -155,7 +171,11 @@ def test_conjured(caplog):
     """'Conjured' items degrade in Quality twice as fast as normal items."""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.CONJURED, sell_in=10, quality=10)
+    item = ItemFactory.create_item(
+        name=ItemType.CONJURED,
+        sell_in=10,
+        quality=10
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
@@ -168,6 +188,10 @@ def test_conjured(caplog):
 def test_item_repr(caplog):
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.CONJURED, sell_in=10, quality=10)
+    item = ItemFactory.create_item(
+        name=ItemType.CONJURED,
+        sell_in=10,
+        quality=10
+    )
 
     assert repr(item) == "ItemType.CONJURED, 10, 10"

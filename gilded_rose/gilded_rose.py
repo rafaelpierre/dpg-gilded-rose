@@ -68,8 +68,7 @@ class StandardItem(Item):
         # "Clamp" quality between min and max value
         updated_quality = max(
             self._min_quality,
-            min(self.quality - quality_change,
-                self._max_quality)
+            min(self.quality - quality_change, self._max_quality)
         )
 
         return updated_quality
@@ -94,52 +93,36 @@ class AgedBrie(StandardItem):
     def __init__(self, name, sell_in, quality):
 
         super().__init__(name, sell_in, quality)
+        # AgedBrie increases in quality over time
         self._quality_daily_change *= -1
-
-    def tick(self):
-        """Updates quality and sell_in for AgedBrie item."""
-
-        logger.debug("Tick")
-        self.update_quality()
-        self.update_sell_in()
 
 
 class BackstagePass(StandardItem):
-    """Definition for AgedBrie class."""
+    """Definition for BackstagePass class."""
 
-    def tick(self):
-        """Updates quality and sell_in for BackstagePass item."""
+    def _get_updated_quality(self):
 
-        logger.debug("Tick")
-        self.update_quality()
-        self.update_sell_in()
-
-    def update_quality(self):
-        """Updates quality for AgedBrie item."""
-
-        quality_increase = 0
         logger.debug(f"Quality: {self.quality}, Max: {self._max_quality}")
         logger.debug(f"Sell In: {self.sell_in}")
-        if self.sell_in > 10:
+
+        quality_increase = 0
+        if (self.sell_in <= 0):
+            return 0
+        elif self.sell_in > 10:
             quality_increase = self._quality_daily_change
         elif 5 < self.sell_in <= 10:
             quality_increase = 2 * self._quality_daily_change
         elif 0 < self.sell_in <= 5:
             quality_increase = 3 * self._quality_daily_change
-        elif self.sell_in <= 0:
-            logger.debug(f"Reached due date (sell_in = {self.sell_in})")
-            self.quality = 0
-            logger.debug(f"Updated quality: {self.quality}")
 
-        updated_quality = self.quality + quality_increase
-        if updated_quality < self._max_quality:
-            self.quality = updated_quality
-        else:
-            logger.debug(
-                f"Quality is equal to or greater than \
-                {self._max_quality}"
-            )
-            self.quality = self._max_quality
+        target_quality = self.quality + quality_increase
+        updated_quality = min(self._max_quality, target_quality)
+        return updated_quality
+
+    def update_quality(self):
+        """Updates quality for BackstagePass item."""
+
+        self.quality = self._get_updated_quality()
 
 
 class Conjured(StandardItem):
@@ -167,6 +150,7 @@ class Conjured(StandardItem):
 
 class Sulfuras(StandardItem):
     """Definition for Sulfuras class."""
+
     def __init__(self, name, sell_in, quality):
         super().__init__(name, sell_in, quality=80)
 
