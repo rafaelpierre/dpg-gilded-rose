@@ -56,8 +56,8 @@ class StandardItem(Item):
     def tick(self):
         """Function used to update items sell_in and quality properties."""
 
-        self.update_sell_in()
         self.update_quality()
+        self.update_sell_in()
 
     def _get_updated_quality(self):
 
