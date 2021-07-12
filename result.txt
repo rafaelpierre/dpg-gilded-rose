@@ -133,7 +133,7 @@ Conjured Mana Cake, -7, 0
 
 -------- day 11 --------
 name, sellIn, quality
-+5 Dexterity Vest, -1, 5
++5 Dexterity Vest, -1, 7
 Aged Brie, -9, 11
 Elixir of the Mongoose, -6, 0
 Sulfuras, Hand of Ragnaros, 0, 80
@@ -145,7 +145,7 @@ Conjured Mana Cake, -8, 0
 
 -------- day 12 --------
 name, sellIn, quality
-+5 Dexterity Vest, -2, -3
++5 Dexterity Vest, -2, 5
 Aged Brie, -10, 12
 Elixir of the Mongoose, -7, 0
 Sulfuras, Hand of Ragnaros, 0, 80
@@ -157,7 +157,7 @@ Conjured Mana Cake, -9, 0
 
 -------- day 13 --------
 name, sellIn, quality
-+5 Dexterity Vest, -3, 0
++5 Dexterity Vest, -3, 3
 Aged Brie, -11, 13
 Elixir of the Mongoose, -8, 0
 Sulfuras, Hand of Ragnaros, 0, 80
@@ -169,7 +169,7 @@ Conjured Mana Cake, -10, 0
 
 -------- day 14 --------
 name, sellIn, quality
-+5 Dexterity Vest, -4, 0
++5 Dexterity Vest, -4, 1
 Aged Brie, -12, 14
 Elixir of the Mongoose, -9, 0
 Sulfuras, Hand of Ragnaros, 0, 80
