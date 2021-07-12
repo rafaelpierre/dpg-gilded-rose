@@ -64,7 +64,7 @@ class StandardItem(Item):
 
         logger.debug("Update quality")
         if (self.quality - self._quality_daily_change) > self._min_quality:
-            if self.sell_in <= 0:
+            if self.sell_in < 0:
                 self._quality_daily_change *= 2
             logger.debug(
                 f"Decreasing quality by \
