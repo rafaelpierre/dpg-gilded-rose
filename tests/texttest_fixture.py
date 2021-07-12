@@ -36,7 +36,6 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         days = int(sys.argv[1]) + 1
         legacy = int(sys.argv[2])
-        print(legacy)
     for day in range(days):
         GildedRose(items).update_quality()
         print("-------- day %s --------" % day)
