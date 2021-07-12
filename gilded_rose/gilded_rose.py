@@ -59,22 +59,27 @@ class StandardItem(Item):
         self.update_sell_in()
         self.update_quality()
 
-    def update_quality(self):
-        """Updates quality for the item."""
+    def _get_updated_quality(self):
 
-        logger.debug("Update quality")
         quality_change = self._quality_daily_change
         if self.sell_in <= 0:
             quality_change = self._quality_daily_change * 2
 
-        if (self.quality - self._quality_daily_change) > self._min_quality:
-            logger.debug(
-                f"Decreasing quality by \
-                {quality_change}"
-            )
-            self.quality -= quality_change
-        else:
-            self.quality = self._min_quality
+        # "Clamp" quality between min and max value
+        updated_quality = max(
+            self._min_quality,
+            min(self.quality - quality_change,
+                self._max_quality)
+        )
+
+        return updated_quality
+
+    def update_quality(self):
+        """Updates quality for the item."""
+
+        logger.debug("Update quality")
+        updated_quality = self._get_updated_quality()
+        self.quality = updated_quality
 
     def update_sell_in(self):
         """Updates item sell_in property."""
@@ -97,9 +102,8 @@ class AgedBrie(StandardItem):
         """Updates quality for AgedBrie item."""
 
         logger.debug("Update quality")
-        if self.quality < self._max_quality:
-            logger.debug("Increasing quality")
-            self.quality += self._quality_daily_change
+        self._quality_daily_change *= -1
+        super().update_quality()
 
 
 class BackstagePass(StandardItem):
