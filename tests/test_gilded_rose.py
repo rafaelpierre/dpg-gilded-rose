@@ -76,14 +76,18 @@ def test_sulfuras_never_sold_decreases_quality(caplog):
     to be sold or decreases in Quality."""
 
     # Act
-    item = ItemFactory.create_item(name=ItemType.SULFURAS, sell_in=10, quality=50)
+    item = ItemFactory.create_item(
+        name=ItemType.SULFURAS,
+        sell_in=10,
+        quality=50
+    )
 
     items = [item]
     gilded_rose = GildedRose(items)
     gilded_rose.update_quality()
 
     # Assert
-    assert items[0].quality == 50 and items[0].sell_in == 10
+    assert items[0].quality == 80 and items[0].sell_in == 10
 
 
 def test_backstage_increase_quality_sellin_more_than_10(caplog):

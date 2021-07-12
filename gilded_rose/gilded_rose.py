@@ -91,6 +91,11 @@ class StandardItem(Item):
 class AgedBrie(StandardItem):
     """Definition for AgedBrie class."""
 
+    def __init__(self, name, sell_in, quality):
+
+        super().__init__(name, sell_in, quality)
+        self._quality_daily_change *= -1
+
     def tick(self):
         """Updates quality and sell_in for AgedBrie item."""
 
@@ -102,7 +107,6 @@ class AgedBrie(StandardItem):
         """Updates quality for AgedBrie item."""
 
         logger.debug("Update quality")
-        self._quality_daily_change *= -1
         super().update_quality()
 
 
@@ -132,7 +136,7 @@ class BackstagePass(StandardItem):
             logger.debug(f"Reached due date (sell_in = {self.sell_in})")
             self.quality = 0
             logger.debug(f"Updated quality: {self.quality}")
-        
+
         updated_quality = self.quality + quality_increase
         if updated_quality < self._max_quality:
             self.quality = updated_quality
